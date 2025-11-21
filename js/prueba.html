@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Prueba - Header Minimalista</title>
+    <style>
+        :root{
+            --bg:#0f1724;
+            --card:#0b1220cc;
+            --accent1:#7c5cff;
+            --accent2:#3dd5ff;
+            --muted:rgba(255,255,255,0.75);
+            --glass: rgba(255,255,255,0.06);
+            --radius:12px;
+            --gap:16px;
+            --fw-semi:600;
+            color-scheme: dark;
+        }
+
+        /* Reset */
+        *{box-sizing:border-box;margin:0;padding:0}
+        html,body{height:100%}
+        body{
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            background:
+                radial-gradient(1200px 600px at 10% 20%, rgba(125,92,255,0.10), transparent 8%),
+                radial-gradient(900px 400px at 95% 80%, rgba(61,213,255,0.06), transparent 6%),
+                var(--bg);
+            color:var(--muted);
+            -webkit-font-smoothing:antialiased;
+            -moz-osx-font-smoothing:grayscale;
+            padding:40px;
+            display:flex;
+            align-items:flex-start;
+            justify-content:center;
+            gap:32px;
+            min-height:100vh;
+        }
+
+        /* Header card */
+        .card{
+            width:100%;
+            max-width:960px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+            border-radius:var(--radius);
+            padding:18px;
+            backdrop-filter: blur(8px) saturate(120%);
+            box-shadow: 0 8px 30px rgba(2,6,23,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+            border:1px solid rgba(255,255,255,0.04);
+        }
+
+        header.header{
+            display:flex;
+            align-items:center;
+            gap:var(--gap);
+        }
+
+        /* Logo area */
+        .brand{
+            display:flex;
+            align-items:center;
+            gap:12px;
+            min-width:0;
+        }
+        .logo{
+            width:48px;height:48px;
+            display:grid;
+            place-items:center;
+            border-radius:10px;
+            background:linear-gradient(135deg,var(--accent1),var(--accent2));
+            box-shadow: 0 6px 18px rgba(124,92,255,0.18);
+            flex-shrink:0;
+        }
+        .logo svg{filter:drop-shadow(0 4px 10px rgba(61,213,255,0.08));}
+
+        .title{
+            display:flex;
+            flex-direction:column;
+            line-height:1;
+            min-width:0;
+        }
+        .title .name{
+            font-weight:var(--fw-semi);
+            color:white;
+            font-size:1rem;
+            letter-spacing:0.2px;
+            white-space:nowrap;
+            overflow:hidden;
+            text-overflow:ellipsis;
+        }
+        .title .tag{
+            font-size:0.78rem;
+            color:rgba(255,255,255,0.65);
+            margin-top:2px;
+        }
+
+        /* Nav + controls */
+        .spacer{flex:1}
+        nav.nav{
+            display:flex;
+            gap:10px;
+            align-items:center;
+            margin-right:10px;
+        }
+        nav a{
+            color:var(--muted);
+            text-decoration:none;
+            padding:8px 12px;
+            border-radius:10px;
+            font-size:0.95rem;
+            transition:all .18s ease;
+        }
+        nav a:hover{
+            background:var(--glass);
+            color:white;
+            transform:translateY(-2px);
+            box-shadow: 0 6px 18px rgba(2,6,23,0.45);
+        }
+
+        .controls{
+            display:flex;
+            gap:10px;
+            align-items:center;
+        }
+
+        .search{
+            position:relative;
+            display:flex;
+            align-items:center;
+            background:rgba(255,255,255,0.02);
+            border-radius:999px;
+            padding:8px;
+            width:220px;
+            transition:width .18s ease, box-shadow .18s ease;
+            border:1px solid transparent;
+        }
+        .search:focus-within{
+            width:300px;
+            box-shadow: 0 6px 18px rgba(124,92,255,0.12);
+            border-color:rgba(124,92,255,0.12);
+        }
+        .search input{
+            background:transparent;
+            border:0;
+            outline:0;
+            color:var(--muted);
+            padding:6px 8px;
+            width:100%;
+            font-size:0.95rem;
+        }
+        .search svg{opacity:0.85; width:18px;height:18px; margin-left:6px; flex-shrink:0}
+
+        .cta{
+            background:linear-gradient(90deg,var(--accent1),var(--accent2));
+            color:white;
+            padding:9px 14px;
+            border-radius:10px;
+            font-weight:600;
+            border:0;
+            cursor:pointer;
+            transition:transform .14s ease, box-shadow .14s ease;
+            box-shadow: 0 8px 20px rgba(124,92,255,0.14);
+        }
+        .cta:hover{transform:translateY(-3px); box-shadow: 0 14px 36px rgba(61,213,255,0.10)}
+
+        /* Responsive */
+        @media (max-width:720px){
+            body{padding:20px}
+            .card{padding:12px}
+            nav{display:none}
+            .search{width:160px}
+            .search:focus-within{width:220px}
+        }
+
+        /* Small demo content below header */
+        .hero{
+            margin-top:20px;
+            padding:22px;
+            border-radius:10px;
+            background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+            color:rgba(255,255,255,0.85);
+            font-size:0.98rem;
+            line-height:1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="card" role="banner" aria-label="Encabezado minimalista">
+        <header class="header">
+            <div class="brand">
+                <div class="logo" aria-hidden="true">
+                    <!-- simple geometric mark -->
+                    <svg viewBox="0 0 64 64" width="28" height="28" xmlns="http://www.w3.org/2000/svg" fill="none">
+                        <rect x="8" y="8" width="48" height="48" rx="10" fill="white" opacity="0.06"/>
+                        <path d="M18 38 L30 24 L46 42" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="title">
+                    <div class="name">Prueba Minimal</div>
+                    <div class="tag">Diseño limpio • Interfaz clara</div>
+                </div>
+            </div>
+
+            <div class="spacer" aria-hidden="true"></div>
+
+            <nav class="nav" aria-label="Navegación principal">
+                <a href="#" aria-current="page">Inicio</a>
+                <a href="#">Proyectos</a>
+                <a href="#">Recursos</a>
+                <a href="#">Contacto</a>
+            </nav>
+
+            <div class="controls">
+                <label class="search" title="Buscar">
+                    <input type="search" placeholder="Buscar..." aria-label="Buscar en el sitio" />
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="6"></circle>
+                        <path d="M21 21l-4.35-4.35"></path>
+                    </svg>
+                </label>
+
+                <button class="cta" aria-label="Comenzar">Comenzar</button>
+            </div>
+        </header>
+
+        <section class="hero" aria-hidden="false">
+            Encabezado con estilo minimalista: tipografía clara, logo neutro, navegación sencilla y una barra de búsqueda compacta. Ideal como punto de partida para interfaces modernas y atractivas.
+        </section>
+    </div>
+</body>
+</html>
